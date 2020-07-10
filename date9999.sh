@@ -38,16 +38,19 @@ C---5---10--------20--------30--------40--------50--------60--------7072
        write(*,*) 'Valid choices range from year 0 to 9999. Century year
      1s would not be leap years unless they were divisible by 400.'
        write(*,*) ' '
-       write(*,*) 'Enter 0 for daily data or 1 for monthly data.'
+       write(*,*) 'Enter 1 if you want an index before the data, 0 if not.'
+       read(*,*) ind
+       write(*,*) ' '
+       write(*,*) 'Enter 1 for daily data or 0 for monthly data.'
        read(*,*) mo
-         if(mo.eq.0) then
+         if(mo.eq.1) then
        write(*,*) 'Enter 0 if you want to ignore leap years (e.g. for so
      1me pentad data), 1 if not.'
        read(*,*) leap
        write(*,*) ' '
        write(*,*) 'Enter 1st Date (YYYYMMDD) Number of Days and Incremen
      1t (Days):'
-         elseif(mo.eq.1) then
+         elseif(mo.eq.0) then
        write(*,*) 'Enter 1st Date (YYYYMMDD) Number of Months and Increm
      1ent (Months):'
          endif
@@ -109,12 +112,13 @@ c           --> 28 Days in FEB
          if(month.gt.12) year=year+1
          month=mod(month-1,12)+1
 
-         if(mo.eq.0) date=year*10000+month*100+day
          if(mo.eq.1) date=year*10000+month*100+day
+         if(mo.eq.0) date=year*10000+month*100+day
 
-      write(*,*) l, ' ', date
-         if(mo.eq.0) date=date+dt
-         if(mo.eq.1) date=date+(dt*100)
+         if (ind.eq.1) write(*,*) l, ' ', date
+         if (ind.eq.0) write(*,*) date
+         if(mo.eq.1) date=date+dt
+         if(mo.eq.0) date=date+(dt*100)
 
  111  enddo
 
