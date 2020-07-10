@@ -29,7 +29,7 @@ cat > date9999.f << EOF
       program date9999
 C
       implicit none
-      integer*4 l,date,edate,year,month,day,dt,mo,leap
+      integer*4 l,date,edate,year,month,day,dt,mo,leap,ind
 
 C---5---10--------20--------30--------40--------50--------60--------7072
 
@@ -38,7 +38,8 @@ C---5---10--------20--------30--------40--------50--------60--------7072
        write(*,*) 'Valid choices range from year 0 to 9999. Century year
      1s would not be leap years unless they were divisible by 400.'
        write(*,*) ' '
-       write(*,*) 'Enter 1 if you want an index before the data, 0 if not.'
+       write(*,*) 'Enter 1 if you want an index before the data, 0 if no
+     1t.'
        read(*,*) ind
        write(*,*) ' '
        write(*,*) 'Enter 1 for daily data or 0 for monthly data.'
